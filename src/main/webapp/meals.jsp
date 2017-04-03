@@ -29,9 +29,11 @@
 <table border="1" bordercolor="black"  cellpadding="4" cellspacing="2" >
     <thead>
     <tr>
+        <th> Id </th>
         <th> Дата и время </th>
         <th> Описание </th>
         <th> Калории </th>
+        <th colspan=2>Action</th>
     </tr>
     </thead>
 
@@ -47,15 +49,26 @@
             </c:if>
 
             <tr class="${textStyle}">
+                <td> <c:out value="${meal.getId()}" /> </td>
                 <td> <javatime:format value="${meal.getDateTime()}" pattern="yyyy-MM-dd HH:mm" /> </td>
-                <td> ${meal.getDescription()} </td>
-                <td> ${meal.getCalories()} </td>
+                <td> <c:out value="${meal.getDescription()}" /> </td>
+                <td> <c:out value="${meal.getCalories()}" />  </td>
+                <td><a href="meals?action=update&mealId=<c:out value="${meal.getId()}"/> ">Update</a></td>
+                <td><a href="meals?action=delete&mealId=<c:out value="${meal.getId()}"/> ">Delete</a></td>
             </tr>
         </c:forEach>
     </tbody>
-
-
 </table>
+
+
+
+<form action="edit.jsp" method="post">
+    <button type="submit" formtarget="_self" > Add meal </button>
+</form>
+
+<form action="index.html" >
+    <button type="submit" > Back </button>
+</form>
 
 </body>
 </html>
