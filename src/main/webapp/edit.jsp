@@ -24,7 +24,7 @@
                          title="yyyy-MM-dd HH:mm"
                          required />   <br />
     Описание: <input  type="text" name="description" value="${Meal.getDescription()}"
-                       pattern="[А-Яа-яЁё\s]+$"
+                       pattern="[А-Яа-яЁёA-Za-z\s]+$"
                        required />    <br />
     Калории : <input  type="number" name="calories" value="${Meal.getCalories()}" max="5000" required/>   <br />
 

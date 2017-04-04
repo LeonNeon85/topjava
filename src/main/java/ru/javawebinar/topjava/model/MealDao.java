@@ -11,8 +11,7 @@ import java.util.Optional;
  * Created by Kpks on 29.03.2017.
  */
 public class MealDao implements MealDaoInterfase {
-
-    private final static List<Meal> meals = Collections.synchronizedList(new ArrayList<Meal>());
+    private  List<Meal> meals = Collections.synchronizedList(new ArrayList<Meal>());
 
     public MealDao() {
         addDataToList();
@@ -47,7 +46,6 @@ public class MealDao implements MealDaoInterfase {
     }
 
     private void addDataToList() {
-        if (meals.isEmpty()) {
             meals.add(new Meal(LocalDateTime.of(2015, Month.MAY, 30, 10, 0), "Завтрак", 500));
             meals.add(new Meal(LocalDateTime.of(2015, Month.MAY, 30, 13, 0), "Обед", 1000));
             meals.add(new Meal(LocalDateTime.of(2015, Month.MAY, 30, 20, 0), "Ужин", 500));
@@ -59,7 +57,5 @@ public class MealDao implements MealDaoInterfase {
             meals.add(new Meal(LocalDateTime.of(2013, Month.OCTOBER, 15, 7, 0), "Завтрак", 1000));
             meals.add(new Meal(LocalDateTime.of(2013, Month.OCTOBER, 15, 18, 0), "Ужин", 500));
             meals.add(new Meal(LocalDateTime.of(2011, Month.FEBRUARY, 7, 21, 0), "Ужин", 3000));
-
-        }
     }
 }

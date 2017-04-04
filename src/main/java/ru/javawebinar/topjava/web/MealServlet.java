@@ -24,6 +24,9 @@ import static org.slf4j.LoggerFactory.getLogger;
 /**
  * Created by Kpks on 27.03.2017.
  */
+
+// у нас интанцируеться етот сервлет только один раз !! поетому у нас одна версия етого сервлета
+
 public class MealServlet extends HttpServlet {
 
     private MealDaoInterfase mealDao = new MealDao();
@@ -67,6 +70,7 @@ public class MealServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOG.debug("inside doPost  in meal");
+        req.setCharacterEncoding("UTF-8");
 
         try {
             String date = req.getParameter("dateTime");
