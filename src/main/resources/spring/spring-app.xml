@@ -10,6 +10,14 @@
         <bean class="ru.javawebinar.topjava.service.UserServiceImpl">
             <property name="repository" ref="mockUserRepository"/>
         </bean>
+
+    <bean class="ru.javawebinar.topjava.web.meal.MealRestController" id="mealRestController">
+        <property name="service" ref="mealService"></property>
+    </bean>
+
+    <bean class="ru.javawebinar.topjava.service.MealServiceImpl" id="mealService">
+    </bean>
+
     -->
 
     <context:annotation-config/>
