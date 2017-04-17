@@ -65,29 +65,13 @@ public class JdbcMealRepositoryImpl implements MealRepository {
                 .addValue("calories", meal.getCalories())
                 .addValue("user_id", userId);
 
-        System.out.println(meal);
-
         if (meal.isNew()) {
             Number newKey = insertUser.executeAndReturnKey(map);
             meal.setId(newKey.intValue());
-
-//            jdbcTemplate.query("INSERT INTO meals (datetime, description, calories, user_id) VALUES () " , ROW_MAPPER );
-//            namedParameterJdbcTemplate.update("INSERT INTO meals VALUES (dateTime=:dateTime, description=:description, " +
-//                    "calories=:calories, user_id=:user_id)", map);
-
-//            namedParameterJdbcTemplate.query("INSERT INTO meals (dateTime, description, calories, user_id) VALUES (dateTime=?, description=?, " +
-//                            "calories=?, user_id=?)", ROW_MAPPER, );
-
-            namedParameterJdbcTemplate.update(
-                    "UPDATE meals SET dateTime=:dateTime, description=:description, " +
-                            "calories=:calories, user_id=:user_id WHERE meal_id=:id AND user_id=:user_id", map);
-
-        } else {
-            namedParameterJdbcTemplate.update(
-                    "UPDATE meals SET dateTime=:dateTime, description=:description, " +
-                            "calories=:calories, user_id=:user_id WHERE meal_id=:id AND user_id=:user_id", map);
         }
-
+            namedParameterJdbcTemplate.update(
+                    "UPDATE meals SET dateTime=:dateTime, description=:description, " +
+                            "calories=:calories, user_id=:user_id WHERE meal_id=:id AND user_id=:user_id", map);
         return meal;
     }
 
@@ -104,8 +88,6 @@ public class JdbcMealRepositoryImpl implements MealRepository {
 
     @Override
     public List<Meal> getAll(int userId) {
-        List<Meal> df = jdbcTemplate.query("SELECT * FROM meals WHERE user_id = ? ORDER BY datetime ", ROW_MAPPER, userId);
-        df.forEach(System.out::println);
         return jdbcTemplate.query("SELECT * FROM meals WHERE user_id = ? ORDER BY datetime", ROW_MAPPER, userId);
     }
 
