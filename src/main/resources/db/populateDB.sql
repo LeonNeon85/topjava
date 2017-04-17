@@ -32,8 +32,3 @@ VALUES ('2015-05-06','Obed Admi', 1500, 100001);
 INSERT INTO meals (dateTime, description, calories, user_id)
 VALUES ('2015-05-06','Yzin Admi', 1500, 100001);
 
-INSERT INTO meals (dateTime, description, calories, user_id)
-VALUES ('2017-01-05','Завтрак User', 1500, 100000);
-
-INSERT INTO meals (dateTime, description, calories, user_id)
-VALUES ('2017-01-05','Завтрак Admin', 1500, 100001);
