@@ -7,6 +7,7 @@ import ru.javawebinar.topjava.repository.MealRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TemporalType;
 import java.time.LocalDateTime;
@@ -23,6 +24,7 @@ public class JpaMealRepositoryImpl implements MealRepository {
     @Transactional
     public Meal save(Meal meal, int userId) {
         if (meal.isNew()) {
+            meal.setUser(em.getReference(User.class, userId)); // !!!!!!!!
             em.persist(meal);
             return meal;
         } else {
@@ -46,7 +48,11 @@ public class JpaMealRepositoryImpl implements MealRepository {
 
     @Override
     public Meal get(int id, int userId) {
-        return em.find(Meal.class, id);
+        try {
+            return em.createNamedQuery("Meal.FIND", Meal.class).setParameter("id", id).setParameter("userId", userId).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override

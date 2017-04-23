@@ -19,6 +19,7 @@ import java.time.LocalTime;
         @NamedQuery(name = "Meal.ALL_SORTED", query = "SELECT m FROM Meal AS m WHERE m.user.id=:user_id ORDER BY m.dateTime desc "),
         @NamedQuery(name = "Meal.SAVE", query = "UPDATE Meal AS m SET m.user.id=:userId"),
         @NamedQuery(name = "Meal.UPDATE", query = "UPDATE Meal m SET m.dateTime=:dateTime, m.description=:description, m.calories=:calories WHERE m.id =:id AND m.user.id=:userId"),
+        @NamedQuery(name = "Meal.FIND", query = "SELECT m FROM Meal AS m WHERE m.id=:id AND m.user.id=:userId"),
 })
 
 @Entity
