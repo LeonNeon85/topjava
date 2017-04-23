@@ -11,21 +11,23 @@ import java.time.LocalTime;
  * 11.01.2015.
  */
 
-// LEFT JOIN FETCH u.roles
+
 
 @NamedQueries({
-        @NamedQuery(name = Meal.DELETE, query = "DELETE FROM Meal m WHERE m.id=:id AND m.user.id=:user_id"),
-        @NamedQuery(name = Meal.BEETWENE, query = "SELECT m FROM Meal m WHERE m.user.id=:user_id AND m.dateTime BETWEEN :startDate AND :endDate ORDER BY m.dateTime desc"),
-        @NamedQuery(name = Meal.ALL_SORTED, query = "SELECT m FROM Meal m LEFT JOIN FETCH m.user WHERE m.id=:user_id ORDER BY m.dateTime desc "),
+        @NamedQuery(name = "Meal.DELETE", query = "DELETE FROM Meal m WHERE m.id=:id AND m.user.id=:user_id"),
+        @NamedQuery(name = "Meal.BEETWENE", query = "SELECT m FROM Meal AS m WHERE m.user.id=:user_id AND m.dateTime BETWEEN :startDate AND :endDate ORDER BY m.dateTime desc"),
+        @NamedQuery(name = "Meal.ALL_SORTED", query = "SELECT m FROM Meal AS m WHERE m.user.id=:user_id ORDER BY m.dateTime desc "),
+        @NamedQuery(name = "Meal.SAVE", query = "UPDATE Meal AS m SET m.user.id=:userId"),
+        @NamedQuery(name = "Meal.UPDATE", query = "UPDATE Meal m SET m.dateTime=:dateTime, m.description=:description, m.calories=:calories WHERE m.id =:id AND m.user.id=:userId"),
 })
 
 @Entity
 @Table(name = "meals", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date_time"}, name = "meals_unique_user_datetime_idx")} )
 public class Meal extends BaseEntity {
 
-    public static final String DELETE = "Meal.DELETE";
-    public static final String BEETWENE = "Meal.BEETWENE";
-    public static final String ALL_SORTED = "Meal.ALL_SORTED";
+//    public static final String DELETE = "Meal.DELETE";
+//    public static final String BEETWENE = "Meal.BEETWENE";
+//    public static final String ALL_SORTED = "Meal.ALL_SORTED";
 
     @NotNull
     @Column(name = "date_time", columnDefinition = "timestamp default now()", nullable = false)
