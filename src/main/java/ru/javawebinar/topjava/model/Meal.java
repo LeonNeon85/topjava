@@ -11,13 +11,10 @@ import java.time.LocalTime;
  * 11.01.2015.
  */
 
-
-   // LEFT JOIN FETCH u.roles
-
 @NamedQueries({
         @NamedQuery(name = Meal.DELETE, query = "DELETE FROM Meal m WHERE m.id=:id AND m.user.id=:user_id"),
-        @NamedQuery(name = Meal.BEETWENE, query = "SELECT m FROM Meal m WHERE m.user.id=:user_id AND m.dateTime BETWEEN :startDate AND :endDate ORDER BY m.dateTime desc"),
-        @NamedQuery(name = Meal.ALL_SORTED, query = "SELECT m FROM Meal m LEFT JOIN FETCH m.user WHERE m.id=:user_id ORDER BY m.dateTime desc "),
+        @NamedQuery(name = Meal.BEETWENE, query = "SELECT m FROM Meal m LEFT JOIN FETCH m.id WHERE m.user.id=:user_id AND m.dateTime BETWEEN :startDate AND :endDate ORDER BY m.dateTime desc"),
+        @NamedQuery(name = Meal.ALL_SORTED, query = "SELECT m FROM Meal m LEFT JOIN FETCH m.id WHERE m.id=:user_id ORDER BY m.dateTime desc"),
 })
 
 @Entity
@@ -38,7 +35,7 @@ public class Meal extends BaseEntity {
     @Column(name = "calories", nullable = false, columnDefinition = "int default 1000")
     private int calories;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 

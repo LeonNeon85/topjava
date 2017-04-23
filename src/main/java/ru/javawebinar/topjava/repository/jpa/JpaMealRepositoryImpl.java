@@ -42,7 +42,11 @@ public class JpaMealRepositoryImpl implements MealRepository {
 
     @Override
     public List<Meal> getAll(int userId) {
-        return em.createNamedQuery(Meal.ALL_SORTED, Meal.class).setParameter("user_id" , userId).getResultList();
+        System.out.println(userId);
+        List<Meal> res1 = em.createNamedQuery(Meal.ALL_SORTED, Meal.class).setParameter("user_id" , userId).getResultList();
+        List<Meal> res2 = em.createQuery("SELECT m FROM Meal m WHERE m.id=:user_id ORDER BY m.dateTime desc").setParameter("user_id" , userId).getResultList();
+        System.out.println();
+        return res1;
     }
 
     @Override
