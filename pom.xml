@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <tomcat.version>8.5.5</tomcat.version>
+        <tomcat.version>8.5.15</tomcat.version>
         <spring.version>4.3.7.RELEASE</spring.version>
         <spring-data-jpa.version>1.11.1.RELEASE</spring-data-jpa.version>
 
@@ -259,6 +259,7 @@
                 </dependency>
             </dependencies>
         </profile>
+
         <profile>
             <id>postgres</id>
             <dependencies>
@@ -279,7 +280,6 @@
             </activation>
         </profile>
     </profiles>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
